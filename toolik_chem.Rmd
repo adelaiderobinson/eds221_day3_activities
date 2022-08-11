@@ -33,6 +33,6 @@ for (i in seq_along(inlet_biochem)){
 }
 mean_toolik_inlet
 
-map_df(inlet_biochem,mean, na.rm = TRUE)
+map_df(inlet_biochem,mean, na.rm = TRUE) 
 ```
 
