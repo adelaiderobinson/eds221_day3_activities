@@ -1,0 +1,72 @@
+---
+title: "conditionals_loops.Rmd"
+author: "Adelaide Robinson"
+date: '2022-08-10'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+pm2_5 <- 48
+
+if (pm2_5 < 100){
+print("Low to Moderate Risk")
+} else if (pm2_5 > 100 & pm2_5 < 150){
+  print("Unhealthy for sensitive groups")
+  } else 
+      print("Health Risk Present")
+```
+
+
+```{r}
+species <- "blue whale"
+if (str_detect(species, "whale")) {
+  print("You found a whale")
+}
+```
+
+```{r}
+max_air_temp_c <- 24.1
+if(max_air_temp_c > 27) {
+  print("air temp too high")
+} else if (max_air_temp_c >= 27){
+  print("air temp okay")
+}
+#come back
+```
+
+```{r}
+base_burrito <- 6.5
+main_ingredient <- "veggie"
+if(main_ingredient == "veggie"){
+  print(base_burrito)
+} else if (main_ingredient == "chicken"){
+  print(base_burrito + 6.5)
+} else 
+  print(base_burrito + 3.25)
+
+  
+```
+
+```{r}
+fish <- c(8, 10, 12, 23)
+
+for (i in seq_along(fish)){
+  val = fish[i]/ (fish[1] + fish [2] + fish [3] + fish [4])
+  print(val)
+  
+}
+```
+
+```{r}
+values <- seq_along(month.name)
+for ( i in seq_along(month.name)){
+  val = paste(month.name[i], "is month", values[i])
+  print(val)
+}
+```
+
