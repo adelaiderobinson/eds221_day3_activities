@@ -15,22 +15,24 @@ library(janitor)
 ```{r}
 toolik_biochem <- read_csv(here("data", "2011_Kling_Akchem.csv"), na = ".") |> clean_names()
 
-
-toolik_inlet <- toolik_biochem |> filter(site == "Toolik Inlet") |> 
+inlet_biochem <- toolik_biochem |> filter(site == "Toolik Inlet") |> 
   select(p_h, doc_u_m, tdn_u_m)
 
 # find the mean three ways 
-summarize(toolik_inlet, mean(p_h, na.rm = TRUE), mean(doc_u_m, na.rm = TRUE), mean(tdn_u_m, na.rm = TRUE))
+summarize(inlet_biochem, mean(p_h, na.rm = TRUE), mean(doc_u_m, na.rm = TRUE), mean(tdn_u_m, na.rm = TRUE))
 
-toolik_inlet |> summarize(across(where(is.numeric), mean, na.rm = TRUE))
+inlet_biochem |> summarize(across(where(is.numeric), mean, na.rm = TRUE))
 
-mean_toolik_inlet <- vector(mode = "numeric", length = ncol(toolik_inlet))
-for (i in seq_along(toolik_inlet)){
-  mean_val <- mean(toolik_inlet[[i]], na.rm = TRUE)
+apply(X = inlet_biochem, MARGIN = 2, FUN = mean, na.rm = TRUE)
+
+#written as a four-loop
+mean_toolik_inlet <- vector(mode = "numeric", length = ncol(inlet_biochem))
+for (i in seq_along(inlet_biochem)){
+  mean_val <- mean(inlet_biochem[[i]], na.rm = TRUE)
   mean_toolik_inlet[i] <- mean_val
 }
 mean_toolik_inlet
 
-map_df(toolik_inlet,mean, na.rm = TRUE)
+map_df(inlet_biochem,mean, na.rm = TRUE)
 ```
 
